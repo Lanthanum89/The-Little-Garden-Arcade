@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v5';
+const CACHE = 'garden-arcade-v6';
 
 const ASSETS = [
   '',
@@ -18,6 +18,7 @@ const ASSETS = [
   'shared/storage.js',
   'shared/register-sw.js',
   'shared/a11y.js',
+  'shared/random.js',
   'games.json',
   'games/flower-garden/',
   'games/flower-garden/index.html',
@@ -43,7 +44,7 @@ const ASSETS = [
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE).then(cache =>
-      Promise.all(ASSETS.map(url => cache.add(url).catch(() => {})))
+      Promise.all(ASSETS.map(url => cache.add(url).catch(err => console.warn('[sw] failed to cache', url, err))))
     )
   );
   self.skipWaiting();

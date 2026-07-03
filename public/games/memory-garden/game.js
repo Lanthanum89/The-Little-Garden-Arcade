@@ -1,5 +1,6 @@
 import { recordCompletion } from '../../shared/storage.js';
 import { makeActivatable } from '../../shared/a11y.js';
+import { shuffle } from '../../shared/random.js';
 
 (function(){
   const ICONS = ['🌸','🌻','🌷','🦋','🐝','💐'];
@@ -7,8 +8,6 @@ import { makeActivatable } from '../../shared/a11y.js';
   const progressEl = document.getElementById('progress');
   const winScreen = document.getElementById('winScreen');
   let cards=[], flipped=[], matchedCount=0, lock=false;
-
-  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
   function buildDeck(){
     let deck=[];
