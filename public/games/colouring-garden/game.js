@@ -1,26 +1,38 @@
 import { makeActivatable } from '../../shared/a11y.js';
 
 (function(){
-  const COLOURS = ['#e8849c','#e3a93f','#9b7fc7','#5fa3c9','#8fb96b','#d96b5c','#fdf3da','#7c5e44'];
+  const COLOURS = [
+    { hex:'#e8849c', name:'Pink'   },
+    { hex:'#e3a93f', name:'Yellow' },
+    { hex:'#9b7fc7', name:'Purple' },
+    { hex:'#5fa3c9', name:'Blue'   },
+    { hex:'#8fb96b', name:'Green'  },
+    { hex:'#d96b5c', name:'Red'    },
+    { hex:'#fdf3da', name:'Cream'  },
+    { hex:'#7c5e44', name:'Brown'  }
+  ];
+  const SHAPE_LABELS = { sky:'Sky', sun:'Sun', ground:'Ground', house:'House', roof:'Roof', door:'Door', flower1:'Flower', flower2:'Flower' };
   const paletteEl = document.getElementById('palette');
   const scene = document.getElementById('scene');
-  let activeColour = COLOURS[0];
+  let activeColour = COLOURS[0].hex;
 
-  COLOURS.forEach((hex,i)=>{
+  COLOURS.forEach((c,i)=>{
     const sw=document.createElement('div');
     sw.className='swatch'+(i===0?' active':'');
-    sw.style.background=hex;
+    sw.style.background=c.hex;
+    sw.setAttribute('aria-label',c.name);
     makeActivatable(sw,()=>{
       document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
       sw.classList.add('active');
-      activeColour=hex;
+      activeColour=c.hex;
     });
     paletteEl.appendChild(sw);
   });
 
   scene.querySelectorAll('path, circle, rect, ellipse').forEach(shape=>{
     if(!shape.id) return;
-    shape.addEventListener('click',()=>{ shape.setAttribute('fill',activeColour); });
+    shape.setAttribute('aria-label',SHAPE_LABELS[shape.id]||shape.id);
+    makeActivatable(shape,()=>{ shape.setAttribute('fill',activeColour); });
   });
 
   document.getElementById('resetBtn').addEventListener('click',()=>{

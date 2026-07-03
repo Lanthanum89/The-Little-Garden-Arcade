@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v3';
+const CACHE = 'garden-arcade-v4';
 
 const ASSETS = [
   '',
@@ -64,7 +64,6 @@ async function networkFirst(request, fallbackKey) {
     const response = await fetch(request);
     if (response && response.ok) {
       await cache.put(request, response.clone());
-      if (fallbackKey) await cache.put(fallbackKey, response.clone());
       return response;
     }
     if (fallbackKey) throw new Error(`Bad response: ${response.status}`);
