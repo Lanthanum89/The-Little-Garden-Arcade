@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v1';
+const CACHE = 'garden-arcade-v2';
 
 const ASSETS = [
   '',
@@ -18,6 +18,10 @@ const ASSETS = [
   'shared/storage.js',
   'shared/register-sw.js',
   'games.json',
+  'games/flower-garden/',
+  'games/flower-garden/index.html',
+  'games/flower-garden/style.css',
+  'games/flower-garden/game.js',
   'games/memory-garden/',
   'games/memory-garden/index.html',
   'games/memory-garden/style.css',
