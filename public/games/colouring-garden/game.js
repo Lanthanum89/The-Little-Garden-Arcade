@@ -1,3 +1,5 @@
+import { makeActivatable } from '../../shared/a11y.js';
+
 (function(){
   const COLOURS = ['#e8849c','#e3a93f','#9b7fc7','#5fa3c9','#8fb96b','#d96b5c','#fdf3da','#7c5e44'];
   const paletteEl = document.getElementById('palette');
@@ -8,7 +10,7 @@
     const sw=document.createElement('div');
     sw.className='swatch'+(i===0?' active':'');
     sw.style.background=hex;
-    sw.addEventListener('click',()=>{
+    makeActivatable(sw,()=>{
       document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
       sw.classList.add('active');
       activeColour=hex;

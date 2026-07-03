@@ -2,6 +2,7 @@
 // Record schema: { gameId, timestamp, completed }
 
 const STORAGE_KEY = 'garden-arcade:progress';
+const MAX_RECORDS = 500;
 
 function readAll() {
   try {
@@ -23,6 +24,7 @@ function writeAll(records) {
 export function recordCompletion(gameId) {
   const records = readAll();
   records.push({ gameId, timestamp: Date.now(), completed: true });
+  if (records.length > MAX_RECORDS) records.splice(0, records.length - MAX_RECORDS);
   writeAll(records);
 }
 

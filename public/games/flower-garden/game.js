@@ -1,5 +1,6 @@
 import { createTapSelect } from '../../shared/tap-select.js';
 import { recordCompletion } from '../../shared/storage.js';
+import { makeActivatable } from '../../shared/a11y.js';
 
 (function(){
   const COLOURS = [
@@ -44,7 +45,7 @@ import { recordCompletion } from '../../shared/storage.js';
       const p=document.createElement('div');
       p.className='pot '+c.potClass;
       p.innerHTML=`<div class="pot-fill" id="fill-${c.id}"></div><span class="pot-count" id="count-${c.id}">0/${PER_COLOUR}</span>`;
-      p.addEventListener('click',()=>handlePotTap(c.id,p));
+      makeActivatable(p,()=>handlePotTap(c.id,p));
       potsEl.appendChild(p);
     });
   }

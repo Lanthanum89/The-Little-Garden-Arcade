@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Little Garden Arcade</title>
 <meta name="theme-color" content="#eef3e6">
 <meta name="mobile-web-app-capable" content="yes">
@@ -52,7 +52,18 @@
         const el = document.createElement(g.status === 'ready' ? 'a' : 'div');
         el.className = g.status === 'ready' ? 'tile' : 'tile soon';
         if (g.status === 'ready') el.href = g.path;
-        el.innerHTML = `<span class="icon">${g.icon}</span><span class="name">${g.name}</span><span class="desc">${g.desc}</span>`;
+
+        const icon = document.createElement('span');
+        icon.className = 'icon';
+        icon.textContent = g.icon;
+        const name = document.createElement('span');
+        name.className = 'name';
+        name.textContent = g.name;
+        const desc = document.createElement('span');
+        desc.className = 'desc';
+        desc.textContent = g.desc;
+        el.append(icon, name, desc);
+
         grid.appendChild(el);
       });
     });

@@ -1,5 +1,6 @@
 import { createTapSelect } from '../../shared/tap-select.js';
 import { recordCompletion } from '../../shared/storage.js';
+import { makeActivatable } from '../../shared/a11y.js';
 
 (function(){
   const COLOURS = [
@@ -40,7 +41,7 @@ import { recordCompletion } from '../../shared/storage.js';
       const b=document.createElement('div');
       b.className='basket '+c.basketClass;
       b.innerHTML=`<div class="basket-fill" id="fill-${c.id}"></div><span class="basket-count" id="count-${c.id}">0/${PER_COLOUR}</span>`;
-      b.addEventListener('click',()=>handleBasketTap(c.id,b));
+      makeActivatable(b,()=>handleBasketTap(c.id,b));
       basketsEl.appendChild(b);
     });
   }

@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v2';
+const CACHE = 'garden-arcade-v3';
 
 const ASSETS = [
   '',
@@ -17,6 +17,7 @@ const ASSETS = [
   'shared/tap-select.js',
   'shared/storage.js',
   'shared/register-sw.js',
+  'shared/a11y.js',
   'games.json',
   'games/flower-garden/',
   'games/flower-garden/index.html',
@@ -35,6 +36,8 @@ const ASSETS = [
   'games/colouring-garden/style.css',
   'games/colouring-garden/game.js',
   'icons/icon.svg',
+  'icons/icon-192.png',
+  'icons/icon-512.png',
 ].map(path => BASE + path);
 
 self.addEventListener('install', e => {
@@ -62,7 +65,9 @@ async function networkFirst(request, fallbackKey) {
     if (response && response.ok) {
       await cache.put(request, response.clone());
       if (fallbackKey) await cache.put(fallbackKey, response.clone());
+      return response;
     }
+    if (fallbackKey) throw new Error(`Bad response: ${response.status}`);
     return response;
   } catch (err) {
     const cached = await cache.match(request);

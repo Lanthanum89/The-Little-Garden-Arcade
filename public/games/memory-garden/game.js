@@ -1,4 +1,5 @@
 import { recordCompletion } from '../../shared/storage.js';
+import { makeActivatable } from '../../shared/a11y.js';
 
 (function(){
   const ICONS = ['🌸','🌻','🌷','🦋','🐝','💐'];
@@ -23,7 +24,7 @@ import { recordCompletion } from '../../shared/storage.js';
       el.dataset.uid=c.uid;
       el.dataset.icon=c.icon;
       el.innerHTML='<span class="back">🌿</span>';
-      el.addEventListener('click',()=>flip(el,c));
+      makeActivatable(el,()=>flip(el,c));
       board.appendChild(el);
     });
   }
