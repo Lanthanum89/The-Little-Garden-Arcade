@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v6';
+const CACHE = 'garden-arcade-v7';
 
 const ASSETS = [
   '',
@@ -63,7 +63,7 @@ self.addEventListener('activate', e => {
   self.clients.claim();
 });
 
-async function networkFirst(request, fallbackKey) {
+async function networkFirst(request) {
   const cache = await caches.open(CACHE);
   try {
     const response = await fetch(request);
@@ -71,15 +71,35 @@ async function networkFirst(request, fallbackKey) {
       await cache.put(request, response.clone());
       return response;
     }
-    if (fallbackKey) throw new Error(`Bad response: ${response.status}`);
     return response;
   } catch (err) {
     const cached = await cache.match(request);
     if (cached) return cached;
-    if (fallbackKey) {
-      const fallback = await cache.match(fallbackKey);
-      if (fallback) return fallback;
+    throw err;
+  }
+}
+
+// Navigations get their own handler because serving the app shell's cached
+// HTML directly under an unrelated URL would break every relative path in
+// it (CSS, scripts, games.json, tile links all resolve against the address
+// bar's URL, not the file the bytes actually came from). Redirecting to the
+// shell's real URL instead makes the browser re-navigate and re-run this
+// same handler, which then serves shell/index.html under its own URL where
+// its relative references resolve correctly.
+async function handleNavigate(request) {
+  const cache = await caches.open(CACHE);
+  try {
+    const response = await fetch(request);
+    if (response && response.ok) {
+      await cache.put(request, response.clone());
+      return response;
     }
+    throw new Error(`Bad response: ${response.status}`);
+  } catch (err) {
+    const cached = await cache.match(request);
+    if (cached) return cached;
+    const fallback = await cache.match(NAV_FALLBACK);
+    if (fallback) return Response.redirect(NAV_FALLBACK, 302);
     throw err;
   }
 }
@@ -90,7 +110,7 @@ self.addEventListener('fetch', e => {
   if (url.origin !== self.location.origin) return;
 
   if (e.request.mode === 'navigate') {
-    e.respondWith(networkFirst(e.request, NAV_FALLBACK));
+    e.respondWith(handleNavigate(e.request));
     return;
   }
 

@@ -21,9 +21,14 @@ import { makeActivatable } from '../../shared/a11y.js';
     sw.className='swatch'+(i===0?' active':'');
     sw.style.background=c.hex;
     sw.setAttribute('aria-label',c.name);
+    sw.setAttribute('aria-pressed',i===0?'true':'false');
     makeActivatable(sw,()=>{
-      document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+      document.querySelectorAll('.swatch').forEach(s=>{
+        s.classList.remove('active');
+        s.setAttribute('aria-pressed','false');
+      });
       sw.classList.add('active');
+      sw.setAttribute('aria-pressed','true');
       activeColour=c.hex;
     });
     paletteEl.appendChild(sw);
