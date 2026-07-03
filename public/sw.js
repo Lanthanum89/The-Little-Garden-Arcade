@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v4';
+const CACHE = 'garden-arcade-v5';
 
 const ASSETS = [
   '',
@@ -41,7 +41,11 @@ const ASSETS = [
 ].map(path => BASE + path);
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+  e.waitUntil(
+    caches.open(CACHE).then(cache =>
+      Promise.all(ASSETS.map(url => cache.add(url).catch(() => {})))
+    )
+  );
   self.skipWaiting();
 });
 
@@ -52,7 +56,7 @@ self.addEventListener('message', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+      Promise.all(keys.filter(k => k.startsWith('garden-arcade-') && k !== CACHE).map(k => caches.delete(k)))
     )
   );
   self.clients.claim();

@@ -5,8 +5,9 @@ export function makeActivatable(el, onActivate) {
   el.setAttribute('tabindex', '0');
   el.addEventListener('click', onActivate);
   el.addEventListener('keydown', e => {
+    if (e.repeat) return;
     if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
     e.preventDefault();
-    onActivate();
+    onActivate(e);
   });
 }

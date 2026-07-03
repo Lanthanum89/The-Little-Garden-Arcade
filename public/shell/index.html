@@ -45,7 +45,10 @@
   // Tiles are rendered from games.json - add a new game there and a tile
   // appears automatically, no code change needed here.
   fetch('../games.json')
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error(`Failed to load games.json: ${res.status}`);
+      return res.json();
+    })
     .then(({ games }) => {
       const grid = document.getElementById('grid');
       games.forEach(g => {
@@ -66,6 +69,9 @@
 
         grid.appendChild(el);
       });
+    })
+    .catch(() => {
+      document.getElementById('grid').textContent = "Couldn't load the games list. Check your connection and try reloading.";
     });
 </script>
 <script type="module" src="../shared/register-sw.js"></script>
