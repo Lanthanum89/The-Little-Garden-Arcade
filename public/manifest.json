@@ -1,0 +1,19 @@
+{
+  "name": "The Little Garden Arcade",
+  "short_name": "Garden Arcade",
+  "description": "A hub of gentle, tap-to-play garden mini-games",
+  "start_url": "shell/",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#eef3e6",
+  "background_color": "#fffaf0",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

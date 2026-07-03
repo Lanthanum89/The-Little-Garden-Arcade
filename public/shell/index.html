@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>The Little Garden Arcade</title>
+<meta name="theme-color" content="#eef3e6">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="../manifest.json">
+<link rel="stylesheet" href="shell.css">
+<style>
+  body { background: var(--garden-sage); }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 560px; }
+  @media (max-width: 380px) { .grid { grid-template-columns: 1fr; } }
+
+  .tile {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: var(--garden-cream);
+    border-radius: var(--radius-md);
+    box-shadow: 0 5px 0 var(--garden-sage-deep), 0 8px 16px rgba(61, 74, 47, .10);
+    padding: 24px 12px;
+    text-decoration: none; color: var(--garden-ink);
+    transition: transform .12s ease;
+  }
+  .tile:active { transform: scale(.96); }
+  .tile .icon { font-size: 40px; margin-bottom: 8px; }
+  .tile .name { font-weight: 700; font-size: 15px; text-align: center; }
+  .tile .desc { font-size: 12px; color: var(--garden-ink-soft); text-align: center; margin-top: 2px; }
+
+  .tile.soon { opacity: .55; pointer-events: none; border: 2px dashed var(--garden-sage-deep); box-shadow: none; background: transparent; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <h1>The Little Garden Arcade 🌿</h1>
+  <p class="sub">Pick a game to play</p>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+  // Tiles are rendered from games.json - add a new game there and a tile
+  // appears automatically, no code change needed here.
+  fetch('../games.json')
+    .then(res => res.json())
+    .then(({ games }) => {
+      const grid = document.getElementById('grid');
+      games.forEach(g => {
+        const el = document.createElement(g.status === 'ready' ? 'a' : 'div');
+        el.className = g.status === 'ready' ? 'tile' : 'tile soon';
+        if (g.status === 'ready') el.href = g.path;
+        el.innerHTML = `<span class="icon">${g.icon}</span><span class="name">${g.name}</span><span class="desc">${g.desc}</span>`;
+        grid.appendChild(el);
+      });
+    });
+</script>
+<script type="module" src="../shared/register-sw.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Nanny's Washing Line</title>
+<meta name="theme-color" content="#cfe8f5">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="../../manifest.json">
+<link rel="stylesheet" href="../../shell/shell.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stage">
+  <h1>Nanny's Washing Line 🧺</h1>
+  <p class="sub">Tap a sock, then tap the basket of the same colour</p>
+
+  <div class="baskets" id="baskets"></div>
+  <div class="washing-line" id="line"></div>
+
+  <div class="footer">
+    <span class="progress" id="progress">0 of 8 sorted</span>
+    <button class="reset-btn" id="resetBtn">Start over</button>
+  </div>
+</div>
+
+<div class="win-screen" id="winScreen">
+  <div class="win-card">
+    <div style="font-size:44px;">🧦🧺✨</div>
+    <h2>All sorted!</h2>
+    <p style="color:var(--garden-ink-soft);">Every sock found its basket.</p>
+    <button id="playAgainBtn">Play again</button>
+  </div>
+</div>
+
+<script type="module" src="game.js"></script>
+<script type="module" src="../../shared/register-sw.js"></script>
+</body>
+</html>
