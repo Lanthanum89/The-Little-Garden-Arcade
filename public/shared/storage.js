@@ -1,0 +1,43 @@
+// Thin localStorage wrapper for tracking game completions.
+// Record schema: { gameId, timestamp, completed }
+
+const STORAGE_KEY = 'garden-arcade:progress';
+const MAX_RECORDS = 500;
+
+function readAll() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeAll(records) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+  } catch {
+    // localStorage unavailable (private browsing, quota, etc) - fail silently
+  }
+}
+
+export function recordCompletion(gameId) {
+  const records = readAll();
+  records.push({ gameId, timestamp: Date.now(), completed: true });
+  if (records.length > MAX_RECORDS) records.splice(0, records.length - MAX_RECORDS);
+  writeAll(records);
+}
+
+export function getCompletions(gameId) {
+  return readAll().filter(record => record.gameId === gameId);
+}
+
+export function getLastCompletion(gameId) {
+  const records = getCompletions(gameId);
+  return records.length ? records[records.length - 1] : null;
+}
+
+export function getAllProgress() {
+  return readAll();
+}

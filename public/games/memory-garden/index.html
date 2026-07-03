@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nanny's Memory Garden</title>
+<meta name="theme-color" content="#eef3e6">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="../../manifest.json">
+<link rel="stylesheet" href="../../shell/shell.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stage">
+  <h1>Nanny's Memory Garden 🌷</h1>
+  <p class="sub">Tap two cards to find a matching pair</p>
+  <div class="board" id="board"></div>
+  <div class="footer">
+    <span class="progress" id="progress">0 of 6 pairs</span>
+    <button class="reset-btn" id="resetBtn">Start over</button>
+  </div>
+</div>
+
+<div class="win-screen" id="winScreen">
+  <div class="win-card">
+    <div style="font-size:44px;">🌸🌻🌷</div>
+    <h2>All matched!</h2>
+    <p style="color:var(--garden-ink-soft);">Well remembered.</p>
+    <button id="playAgainBtn">Play again</button>
+  </div>
+</div>
+
+<script type="module" src="game.js"></script>
+<script type="module" src="../../shared/register-sw.js"></script>
+</body>
+</html>

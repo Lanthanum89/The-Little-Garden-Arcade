@@ -1,0 +1,28 @@
+html, body { background: var(--garden-sage); overflow: hidden; height: 100%; }
+
+.board {
+  display: grid; gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%; max-width: 480px; flex: 1;
+  align-content: center;
+}
+.card {
+  aspect-ratio: 1/1;
+  border-radius: var(--radius-md);
+  background: var(--garden-cream);
+  box-shadow: 0 4px 0 var(--garden-sage-deep);
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(26px, 8vw, 38px);
+  cursor: pointer;
+  transition: transform .25s ease;
+  transform-style: preserve-3d;
+  position: relative;
+}
+.card .back { font-size: clamp(20px, 6vw, 26px); }
+.card.flipped { background: #fff7e3; }
+.card.matched { background: #e3f0d2; opacity: .55; cursor: default; }
+.card.wrong { animation: shake .35s ease; }
+
+.footer { max-width: 480px; }
+
+.win-card button { background: var(--garden-pink-deep); }

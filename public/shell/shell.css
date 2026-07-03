@@ -1,0 +1,124 @@
+/* Shared design tokens for The Little Garden Arcade.
+   Individual games layer their own accent palette and layout on top. */
+
+:root {
+  --garden-cream: #fffaf0;
+  --garden-ink: #3d4a2f;
+  --garden-ink-soft: #6b7a58;
+
+  --garden-sage: #eef3e6;
+  --garden-sage-deep: #cdddb8;
+  --garden-sky: #cfe8f5;
+  --garden-sky-deep: #a9d2e8;
+  --garden-blossom: #f9e8ec;
+  --garden-blossom-deep: #e6bcc7;
+  --garden-coral: #d96b5c;
+  --garden-pink-deep: #c75e78;
+
+  --radius-lg: 24px;
+  --radius-md: 20px;
+  --radius-sm: 14px;
+  --radius-pill: 30px;
+
+  --font-heading: Georgia, serif;
+  --font-body: 'Trebuchet MS', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-body);
+  color: var(--garden-ink);
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 6vw, 28px);
+  margin: 4px 0 0;
+  text-align: center;
+}
+
+.sub {
+  color: var(--garden-ink-soft);
+  font-size: clamp(14px, 4vw, 16px);
+  margin: 2px 0 14px;
+  text-align: center;
+}
+
+.stage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 14px;
+}
+
+.reset-btn {
+  border: none;
+  background: var(--garden-ink);
+  color: #fff;
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.progress {
+  font-size: 14px;
+  color: var(--garden-ink-soft);
+}
+
+.win-screen {
+  position: fixed;
+  inset: 0;
+  background: rgba(61, 74, 47, .55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.win-screen.show { display: flex; }
+
+.win-card {
+  background: var(--garden-cream);
+  border-radius: var(--radius-lg);
+  padding: 32px 26px;
+  text-align: center;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+.win-card h2 {
+  font-family: var(--font-heading);
+  margin: 0 0 8px;
+}
+.win-card button {
+  border: none;
+  color: #fff;
+  padding: 11px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+@keyframes shake {
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}

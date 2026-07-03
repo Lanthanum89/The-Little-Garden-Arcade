@@ -1,0 +1,45 @@
+html, body { background: var(--garden-blossom); overflow: hidden; height: 100%; }
+
+.pots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; max-width: 520px; margin-bottom: 18px; }
+.pot {
+  position: relative; aspect-ratio: 1/0.9; border-radius: 10px 10px 26px 26px;
+  border: 3px solid rgba(0, 0, 0, .08);
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 6px;
+  cursor: pointer;
+}
+.pot.wrong { animation: shake .4s ease; }
+.pot-count { font-weight: 700; font-size: 14px; color: rgba(0, 0, 0, .55); background: rgba(255, 255, 255, .6); border-radius: 10px; padding: 1px 7px; }
+.pot-fill { position: absolute; top: 8px; left: 0; right: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 2px; }
+.mini { font-size: 16px; }
+
+.pPink { background: linear-gradient(180deg, #f3d9d9, #c9776e); }
+.pYellow { background: linear-gradient(180deg, #fbf0d8, #e0ac4c); }
+.pPurple { background: linear-gradient(180deg, #ece1f7, #a583c9); }
+.pBlue { background: linear-gradient(180deg, #dcecf5, #6fa8c9); }
+
+.flower-tray {
+  flex: 1; width: 100%; max-width: 560px;
+  background: var(--garden-cream);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 6px 0 var(--garden-blossom-deep), 0 10px 20px rgba(61, 74, 47, .12);
+  padding: 18px 14px;
+  display: flex; flex-wrap: wrap; align-content: flex-start; justify-content: center; gap: 14px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.flower-btn {
+  border: none; background: none; cursor: pointer;
+  width: 56px; display: flex; flex-direction: column; align-items: center;
+  transition: transform .15s ease;
+}
+.flower-btn::after { content: ''; width: 16px; height: 8px; margin-top: 2px; background: #8a6a4a; border-radius: 0 0 8px 8px; }
+.flower-btn:active { transform: scale(.9); }
+.flower-btn.selected { transform: translateY(-4px) scale(1.12); }
+.flower-btn.selected svg circle { filter: drop-shadow(0 0 5px rgba(0, 0, 0, .3)); }
+.flower-btn.gone { animation: popAway .3s ease forwards; pointer-events: none; }
+@keyframes popAway { to { transform: scale(0); opacity: 0; } }
+
+.footer { max-width: 560px; }
+
+.win-card button { background: var(--garden-pink-deep); }
