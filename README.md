@@ -1,6 +1,6 @@
 # The Little Garden Arcade 🌿
 
-A hub of gentle, tap-to-play garden mini-games built for Nanny. No drag-and-drop, ever — everything works by tapping a piece, then tapping where it goes, so it stays easy to play regardless of fine motor control.
+A hub of gentle, tap-to-play garden mini-games. No drag-and-drop, ever — everything works by tapping a piece, then tapping where it goes, so it stays easy to play regardless of fine motor control.
 
 **Live:** https://lanthanum89.github.io/The-Little-Garden-Arcade/
 
