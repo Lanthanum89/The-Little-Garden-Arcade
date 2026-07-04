@@ -10,7 +10,7 @@ import { shuffle } from '../../shared/random.js';
     { id:'green',  name:'Green',  hex:'#8fb96b', basketClass:'bGreen'  },
     { id:'blue',   name:'Blue',   hex:'#6fa8c9', basketClass:'bBlue'   }
   ];
-  const PER_COLOUR = 2;
+  const PER_COLOUR = 6;
   const total = COLOURS.length * PER_COLOUR;
 
   const lineEl = document.getElementById('line');
