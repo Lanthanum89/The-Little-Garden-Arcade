@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v9';
+const CACHE = 'garden-arcade-v10';
 
 const ASSETS = [
   '',
@@ -40,9 +40,11 @@ const ASSETS = [
   'games/colouring-garden/index.html',
   'games/colouring-garden/style.css',
   'games/colouring-garden/game.js',
-  'icons/icon.svg',
   'icons/icon-192.png',
   'icons/icon-512.png',
+  'icons/favicon-16.png',
+  'icons/favicon-32.png',
+  'icons/apple-touch-icon.png',
 ].map(path => BASE + path);
 
 self.addEventListener('install', e => {
