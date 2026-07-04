@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Little Garden Arcade</title>
-<meta name="theme-color" content="#eef3e6">
+<meta name="theme-color" content="#f6f5ef">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -17,21 +17,22 @@
 
   .grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 560px;
-    margin: auto 0;
+    margin: 24px 0 auto;
   }
   @media (max-width: 380px) { .grid { grid-template-columns: 1fr; } }
 
   .tile {
+    --press-scale: .97;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    background: var(--garden-cream);
+    background: linear-gradient(180deg, #fffdf9, #f8f4ea);
     border-radius: var(--radius-md);
-    box-shadow: 0 4px 14px rgba(61, 74, 47, .12);
+    box-shadow: 0 12px 32px rgba(63, 70, 55, .12);
     padding: 24px 12px;
     text-decoration: none; color: var(--garden-ink);
-    transition: transform .12s ease, box-shadow .12s ease;
+    transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), box-shadow .15s ease;
   }
-  .tile:active { transform: scale(.94); box-shadow: 0 2px 6px rgba(61, 74, 47, .10); }
-  .tile:focus-visible { outline: 3px solid var(--garden-ink); outline-offset: 3px; }
+  .tile:active { transform: scale(var(--press-scale)); box-shadow: 0 6px 16px rgba(63, 70, 55, .10); }
+  .tile:focus-visible { outline: 3px solid var(--garden-accent); outline-offset: 3px; }
 
   .tile .icon {
     width: 56px; height: 56px;
@@ -40,8 +41,13 @@
     border-radius: 50%;
     background: var(--garden-sage);
     margin-bottom: 10px;
+    transition: transform .2s cubic-bezier(.34, 1.56, .64, 1);
   }
-  .tile .name { font-weight: 700; font-size: 15px; text-align: center; }
+  /* the tile's own scale-down already shrinks everything inside it,
+     so compensate here to land on a true 1.05x icon size relative to
+     its unpressed size, not 1.05x of the already-shrunk tile */
+  .tile:active .icon { transform: scale(calc(1.05 / var(--press-scale))); }
+  .tile .name { font-weight: 600; font-size: 15px; text-align: center; }
   .tile .desc { font-size: 12px; color: var(--garden-ink-soft); text-align: center; margin-top: 2px; }
 
   .tile.soon { opacity: .55; pointer-events: none; border: 2px dashed var(--garden-sage-deep); box-shadow: none; background: transparent; }
@@ -74,6 +80,7 @@
         const icon = document.createElement('span');
         icon.className = 'icon';
         icon.textContent = g.icon;
+        if (g.status === 'ready' && g.accent) icon.style.backgroundColor = g.accent;
         const name = document.createElement('span');
         name.className = 'name';
         name.textContent = g.name;

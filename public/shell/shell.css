@@ -1,12 +1,48 @@
 /* Shared design tokens for The Little Garden Arcade.
    Individual games layer their own accent palette and layout on top. */
 
+/* Self-hosted so the fonts are covered by the service worker's
+   same-origin precache and still render offline (a Google Fonts
+   @import would bypass the SW entirely and just fall back silently). */
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../shared/fonts/dm-serif-display-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../shared/fonts/dm-serif-display-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../shared/fonts/nunito-sans-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../shared/fonts/nunito-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
-  --garden-cream: #fffaf0;
-  --garden-ink: #3d4a2f;
+  --garden-cream: #fffdf8;
+  --garden-ink: #3f4637;
   --garden-ink-soft: #6b7a58;
 
-  --garden-sage: #eef3e6;
+  --garden-sage: #f6f5ef;
   --garden-sage-deep: #cdddb8;
   --garden-sky: #cfe8f5;
   --garden-sky-deep: #a9d2e8;
@@ -15,13 +51,17 @@
   --garden-coral: #d96b5c;
   --garden-pink-deep: #c75e78;
 
+  --garden-accent: #6f8f62;
+  --garden-accent-soft: #a6c48a;
+  --garden-accent-highlight: #dceccb;
+
   --radius-lg: 24px;
   --radius-md: 20px;
   --radius-sm: 14px;
   --radius-pill: 30px;
 
-  --font-heading: Georgia, serif;
-  --font-body: 'Trebuchet MS', sans-serif;
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Nunito Sans', 'Trebuchet MS', sans-serif;
 }
 
 *, *::before, *::after {
