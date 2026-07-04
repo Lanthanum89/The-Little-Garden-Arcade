@@ -1,12 +1,14 @@
 /* Shared design tokens for The Little Garden Arcade.
    Individual games layer their own accent palette and layout on top. */
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito+Sans:wght@400;600;700&display=swap');
+
 :root {
-  --garden-cream: #fffaf0;
-  --garden-ink: #3d4a2f;
+  --garden-cream: #fffdf8;
+  --garden-ink: #3f4637;
   --garden-ink-soft: #6b7a58;
 
-  --garden-sage: #eef3e6;
+  --garden-sage: #f6f5ef;
   --garden-sage-deep: #cdddb8;
   --garden-sky: #cfe8f5;
   --garden-sky-deep: #a9d2e8;
@@ -15,13 +17,17 @@
   --garden-coral: #d96b5c;
   --garden-pink-deep: #c75e78;
 
+  --garden-accent: #6f8f62;
+  --garden-accent-soft: #a6c48a;
+  --garden-accent-highlight: #dceccb;
+
   --radius-lg: 24px;
   --radius-md: 20px;
   --radius-sm: 14px;
   --radius-pill: 30px;
 
-  --font-heading: Georgia, serif;
-  --font-body: 'Trebuchet MS', sans-serif;
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Nunito Sans', 'Trebuchet MS', sans-serif;
 }
 
 *, *::before, *::after {

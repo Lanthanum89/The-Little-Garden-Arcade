@@ -1,8 +1,8 @@
 {
   "games": [
-    { "id": "flower-garden", "name": "Flower Garden", "desc": "Match by colour", "icon": "🌼", "path": "../games/flower-garden/", "status": "ready" },
-    { "id": "memory-garden", "name": "Memory Garden", "desc": "Find the pairs", "icon": "🌷", "path": "../games/memory-garden/", "status": "ready" },
-    { "id": "washing-line", "name": "Washing Line", "desc": "Sort the socks", "icon": "🧺", "path": "../games/washing-line/", "status": "ready" },
-    { "id": "colouring-garden", "name": "Colouring Garden", "desc": "Tap to fill", "icon": "🎨", "path": "../games/colouring-garden/", "status": "ready" }
+    { "id": "flower-garden", "name": "Flower Garden", "desc": "Match the flowers!", "icon": "🌼", "accent": "#fdf3d9", "path": "../games/flower-garden/", "status": "ready" },
+    { "id": "memory-garden", "name": "Memory Garden", "desc": "Can you remember?", "icon": "🌷", "accent": "#fbe4ea", "path": "../games/memory-garden/", "status": "ready" },
+    { "id": "washing-line", "name": "Washing Line", "desc": "Match every sock!", "icon": "🧺", "accent": "#dceef7", "path": "../games/washing-line/", "status": "ready" },
+    { "id": "colouring-garden", "name": "Colouring Garden", "desc": "Colour your picture!", "icon": "🎨", "accent": "#eae1f5", "path": "../games/colouring-garden/", "status": "ready" }
   ]
 }
