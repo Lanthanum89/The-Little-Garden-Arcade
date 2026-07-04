@@ -13,7 +13,7 @@
 <style>
   body { background: var(--garden-sage); }
 
-  .stage { min-height: 100dvh; }
+  .stage { min-height: 100vh; min-height: 100dvh; }
 
   .grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 560px;
@@ -31,6 +31,7 @@
     transition: transform .12s ease, box-shadow .12s ease;
   }
   .tile:active { transform: scale(.94); box-shadow: 0 2px 6px rgba(61, 74, 47, .10); }
+  .tile:focus-visible { outline: 3px solid var(--garden-ink); outline-offset: 3px; }
 
   .tile .icon {
     width: 56px; height: 56px;
