@@ -22,6 +22,7 @@
   @media (max-width: 380px) { .grid { grid-template-columns: 1fr; } }
 
   .tile {
+    --press-scale: .97;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     background: linear-gradient(180deg, #fffdf9, #f8f4ea);
     border-radius: var(--radius-md);
@@ -30,7 +31,7 @@
     text-decoration: none; color: var(--garden-ink);
     transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), box-shadow .15s ease;
   }
-  .tile:active { transform: scale(.97); box-shadow: 0 6px 16px rgba(63, 70, 55, .10); }
+  .tile:active { transform: scale(var(--press-scale)); box-shadow: 0 6px 16px rgba(63, 70, 55, .10); }
   .tile:focus-visible { outline: 3px solid var(--garden-accent); outline-offset: 3px; }
 
   .tile .icon {
@@ -42,7 +43,10 @@
     margin-bottom: 10px;
     transition: transform .2s cubic-bezier(.34, 1.56, .64, 1);
   }
-  .tile:active .icon { transform: scale(1.05); }
+  /* the tile's own scale-down already shrinks everything inside it,
+     so compensate here to land on a true 1.05x icon size relative to
+     its unpressed size, not 1.05x of the already-shrunk tile */
+  .tile:active .icon { transform: scale(calc(1.05 / var(--press-scale))); }
   .tile .name { font-weight: 600; font-size: 15px; text-align: center; }
   .tile .desc { font-size: 12px; color: var(--garden-ink-soft); text-align: center; margin-top: 2px; }
 
@@ -76,7 +80,7 @@
         const icon = document.createElement('span');
         icon.className = 'icon';
         icon.textContent = g.icon;
-        if (g.status === 'ready' && g.accent) icon.style.background = g.accent;
+        if (g.status === 'ready' && g.accent) icon.style.backgroundColor = g.accent;
         const name = document.createElement('span');
         name.className = 'name';
         name.textContent = g.name;
