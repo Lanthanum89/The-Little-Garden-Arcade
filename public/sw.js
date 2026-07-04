@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v8';
+const CACHE = 'garden-arcade-v9';
 
 const ASSETS = [
   '',
