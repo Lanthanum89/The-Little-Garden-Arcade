@@ -19,6 +19,7 @@ import { makeActivatable } from '../../shared/a11y.js';
   let popTimer = null;
   let roundTimer = null;
   let timeLeft = ROUND_MS;
+  let lastTick = 0;
 
   function formatTime(ms){
     const s = Math.max(0, Math.ceil(ms / 1000));
@@ -26,6 +27,7 @@ import { makeActivatable } from '../../shared/a11y.js';
   }
 
   function renderMounds(){
+    mounds.forEach(m => clearTimeout(m.retreatTimeout));
     moundsEl.innerHTML = '';
     mounds = [];
     for (let i = 0; i < MOUNDS; i++){
@@ -67,11 +69,13 @@ import { makeActivatable } from '../../shared/a11y.js';
     scoreEl.textContent = `Watered: ${watered}`;
     m.el.classList.add('watered');
     clearTimeout(m.retreatTimeout);
-    setTimeout(() => retreat(m), 200);
+    m.retreatTimeout = setTimeout(() => retreat(m), 200);
   }
 
   function tick(){
-    timeLeft -= 100;
+    const now = performance.now();
+    timeLeft -= now - lastTick;
+    lastTick = now;
     if (timeLeft <= 0){
       timerEl.textContent = '0:00';
       endRound();
@@ -100,6 +104,7 @@ import { makeActivatable } from '../../shared/a11y.js';
     renderMounds();
     clearInterval(popTimer);
     clearInterval(roundTimer);
+    lastTick = performance.now();
     popTimer = setInterval(popRandomMound, POP_INTERVAL_MS);
     roundTimer = setInterval(tick, 100);
   }
