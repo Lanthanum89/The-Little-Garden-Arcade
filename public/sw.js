@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v10';
+const CACHE = 'garden-arcade-v11';
 
 const ASSETS = [
   '',
@@ -23,6 +23,8 @@ const ASSETS = [
   'shared/fonts/dm-serif-display-latin.woff2',
   'shared/fonts/nunito-sans-latin-ext.woff2',
   'shared/fonts/nunito-sans-latin.woff2',
+  'shared/fonts/quicksand-700-latin-ext.woff2',
+  'shared/fonts/quicksand-700-latin.woff2',
   'games.json',
   'games/flower-garden/',
   'games/flower-garden/index.html',

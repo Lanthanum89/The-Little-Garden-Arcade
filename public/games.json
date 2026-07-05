@@ -1,8 +1,8 @@
 {
   "games": [
-    { "id": "flower-garden", "name": "Flower Garden", "desc": "Match the flowers!", "icon": "🌼", "accent": "#fdf3d9", "path": "../games/flower-garden/", "status": "ready" },
-    { "id": "memory-garden", "name": "Memory Garden", "desc": "Can you remember?", "icon": "🌷", "accent": "#fbe4ea", "path": "../games/memory-garden/", "status": "ready" },
-    { "id": "washing-line", "name": "Washing Line", "desc": "Coming soon!", "icon": "🧺", "accent": "#dceef7", "path": "../games/washing-line/", "status": "soon" },
-    { "id": "colouring-garden", "name": "Colouring Garden", "desc": "Coming soon!", "icon": "🎨", "accent": "#eae1f5", "path": "../games/colouring-garden/", "status": "soon" }
+    { "id": "flower-garden", "name": "Flower Garden", "desc": "Match the flowers!", "icon": "🌼", "path": "../games/flower-garden/", "status": "ready" },
+    { "id": "memory-garden", "name": "Memory Garden", "desc": "Can you remember?", "icon": "🌷", "path": "../games/memory-garden/", "status": "ready" },
+    { "id": "washing-line", "name": "Washing Line", "desc": "Coming soon!", "icon": "🧺", "path": "../games/washing-line/", "status": "soon" },
+    { "id": "colouring-garden", "name": "Colouring Garden", "desc": "Coming soon!", "icon": "🎨", "path": "../games/colouring-garden/", "status": "soon" }
   ]
 }
