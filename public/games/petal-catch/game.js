@@ -27,6 +27,7 @@ import { makeActivatable } from '../../shared/a11y.js';
 
   function renderLives(){
     livesEl.textContent = '💛'.repeat(lives) + '🤍'.repeat(START_LIVES - lives);
+    livesEl.setAttribute('aria-label', `${lives} of ${START_LIVES} lives remaining`);
   }
 
   function moveBasketTo(i){

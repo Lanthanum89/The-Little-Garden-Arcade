@@ -109,7 +109,7 @@ h1 {
    has room to grow, same as before the panel existed. */
 .panel {
   width: 100%;
-  max-width: 480px;
+  max-width: 560px;
   background: #fffdf7;
   border-radius: var(--radius-lg);
   box-shadow: 0 8px 30px rgba(0, 0, 0, .12);
