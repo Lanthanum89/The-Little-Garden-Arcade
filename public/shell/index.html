@@ -48,18 +48,18 @@
   .tile:active { transform: scale(var(--press-scale)) rotate(var(--tilt)); }
   .tile:focus-visible { outline: 3px solid var(--garden-accent); outline-offset: 3px; }
 
-  .grid .tile:nth-child(1) { --tilt: -1.3deg; background: #ffd76b; color: #3d2f0a; }
-  .grid .tile:nth-child(2) { --tilt: 1.3deg; background: #ff9eb6; color: #4a1424; }
-  .grid .tile:nth-child(3) { --tilt: -1deg; background: #bfe3f5; color: #163a4a; }
-  .grid .tile:nth-child(4) { --tilt: 1deg; background: #b9dd94; color: #2c3b17; }
-  .grid .tile:nth-child(1) .icon { background: #fff2cf; }
-  .grid .tile:nth-child(2) .icon { background: #ffe0e8; }
-  .grid .tile:nth-child(3) .icon { background: #e4f4fb; }
-  .grid .tile:nth-child(4) .icon { background: #e8f3da; }
-  .grid .tile:nth-child(1) .desc { color: #6b581e; }
-  .grid .tile:nth-child(2) .desc { color: #7a3348; }
-  .grid .tile:nth-child(3) .desc { color: #1f4a5c; }
-  .grid .tile:nth-child(4) .desc { color: #33481f; }
+  .tile[data-game="flower-garden"] { --tilt: -1.3deg; background: #ffd76b; color: #3d2f0a; }
+  .tile[data-game="memory-garden"] { --tilt: 1.3deg; background: #ff9eb6; color: #4a1424; }
+  .tile[data-game="petal-catch"] { --tilt: -1deg; background: #bfe3f5; color: #163a4a; }
+  .tile[data-game="sprout-pop"] { --tilt: 1deg; background: #b9dd94; color: #2c3b17; }
+  .tile[data-game="flower-garden"] .icon { background: #fff2cf; }
+  .tile[data-game="memory-garden"] .icon { background: #ffe0e8; }
+  .tile[data-game="petal-catch"] .icon { background: #e4f4fb; }
+  .tile[data-game="sprout-pop"] .icon { background: #e8f3da; }
+  .tile[data-game="flower-garden"] .desc { color: #6b581e; }
+  .tile[data-game="memory-garden"] .desc { color: #7a3348; }
+  .tile[data-game="petal-catch"] .desc { color: #1f4a5c; }
+  .tile[data-game="sprout-pop"] .desc { color: #33481f; }
 
   .tile.soon { background: #e4e0d4; color: #5c5640; }
   .tile.soon .icon { background: #f2efe4; opacity: .85; }
@@ -119,6 +119,7 @@
       games.forEach(g => {
         const el = document.createElement(g.status === 'ready' ? 'a' : 'div');
         el.className = g.status === 'ready' ? 'tile' : 'tile soon';
+        el.dataset.game = g.id;
         if (g.status === 'ready') el.href = g.path;
 
         const icon = document.createElement('span');
