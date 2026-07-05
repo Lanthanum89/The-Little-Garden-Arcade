@@ -1,5 +1,7 @@
 html, body { background: var(--garden-blossom); overflow: hidden; height: 100%; }
 
+.panel { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+
 .pots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; max-width: 520px; margin-bottom: 18px; }
 .pot {
   position: relative; aspect-ratio: 1/0.9; border-radius: 10px 10px 26px 26px;

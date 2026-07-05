@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nanny's Washing Line</title>
-<meta name="theme-color" content="#cfe8f5">
+<title>Nanny's Sprout Pop</title>
+<meta name="theme-color" content="#fdf3da">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -17,23 +17,30 @@
 </head>
 <body>
 <div class="stage">
-  <h1>Nanny's Washing Line 🧺</h1>
-  <p class="sub">Tap a sock, then tap the basket of the same colour</p>
+  <div class="panel">
+    <h1>Nanny's Sprout Pop 🌱</h1>
+    <p class="sub">Tap the sprouts to give them a drink</p>
+    <div class="flourish" aria-hidden="true"><span>&#10022;</span><span>&#10022;</span><span>&#10022;</span></div>
 
-  <div class="baskets" id="baskets"></div>
-  <div class="washing-line" id="line"></div>
+    <div class="hud">
+      <span class="timer" id="timer">0:30</span>
+      <span class="score" id="score">Watered: 0</span>
+    </div>
 
-  <div class="footer">
-    <span class="progress" id="progress">Sort the socks!</span>
-    <button class="reset-btn" id="resetBtn">Start over</button>
+    <div class="mounds" id="mounds"></div>
+
+    <div class="footer">
+      <span class="progress">Quick, water them before they hide!</span>
+      <button class="reset-btn" id="resetBtn">Start over</button>
+    </div>
   </div>
 </div>
 
 <div class="win-screen" id="winScreen">
   <div class="win-card">
-    <div style="font-size:44px;">🧦🧺✨</div>
-    <h2>All sorted!</h2>
-    <p style="color:var(--garden-ink-soft);">Every sock found its basket.</p>
+    <div style="font-size:44px;">🌱💧🌼</div>
+    <h2>Time's up!</h2>
+    <p id="endMessage" style="color:var(--garden-ink-soft);">You watered some sprouts.</p>
     <button id="playAgainBtn">Play again</button>
   </div>
 </div>
