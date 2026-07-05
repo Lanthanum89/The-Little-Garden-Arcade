@@ -12,6 +12,7 @@ import { makeActivatable } from '../../shared/a11y.js';
   const lanesEl = document.getElementById('lanes');
   const basketEl = document.getElementById('basket');
   const livesEl = document.getElementById('lives');
+  const livesStatusEl = document.getElementById('livesStatus');
   const scoreEl = document.getElementById('score');
   const winScreen = document.getElementById('winScreen');
   const endTitle = document.getElementById('endTitle');
@@ -27,7 +28,7 @@ import { makeActivatable } from '../../shared/a11y.js';
 
   function renderLives(){
     livesEl.textContent = '💛'.repeat(lives) + '🤍'.repeat(START_LIVES - lives);
-    livesEl.setAttribute('aria-label', `${lives} of ${START_LIVES} lives remaining`);
+    livesStatusEl.textContent = `${lives} of ${START_LIVES} lives remaining`;
   }
 
   function moveBasketTo(i){
