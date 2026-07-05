@@ -40,6 +40,10 @@
     text-decoration: none;
     transform: rotate(var(--tilt));
     transition: transform .18s ease, box-shadow .18s ease;
+    /* Fallback so a ready game without a matching [data-game] rule below
+       still renders as a readable card instead of transparent/unstyled. */
+    background: var(--garden-sage);
+    color: var(--garden-ink);
   }
   .tile:hover, .tile:focus-visible {
     transform: translateY(-3px) rotate(var(--tilt));
@@ -78,6 +82,7 @@
     font-size: 49px; line-height: 1;
     border-radius: 50%;
     margin: 0;
+    background: var(--garden-sage-deep);
     transition: transform .2s cubic-bezier(.34, 1.56, .64, 1);
   }
   /* the tile's own scale-down already shrinks everything inside it,
