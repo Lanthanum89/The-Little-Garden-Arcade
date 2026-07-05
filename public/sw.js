@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v11';
+const CACHE = 'garden-arcade-v12';
 
 const ASSETS = [
   '',
@@ -19,8 +19,6 @@ const ASSETS = [
   'shared/register-sw.js',
   'shared/a11y.js',
   'shared/random.js',
-  'shared/fonts/dm-serif-display-latin-ext.woff2',
-  'shared/fonts/dm-serif-display-latin.woff2',
   'shared/fonts/nunito-sans-latin-ext.woff2',
   'shared/fonts/nunito-sans-latin.woff2',
   'shared/fonts/quicksand-700-latin-ext.woff2',
@@ -34,14 +32,14 @@ const ASSETS = [
   'games/memory-garden/index.html',
   'games/memory-garden/style.css',
   'games/memory-garden/game.js',
-  'games/washing-line/',
-  'games/washing-line/index.html',
-  'games/washing-line/style.css',
-  'games/washing-line/game.js',
-  'games/colouring-garden/',
-  'games/colouring-garden/index.html',
-  'games/colouring-garden/style.css',
-  'games/colouring-garden/game.js',
+  'games/petal-catch/',
+  'games/petal-catch/index.html',
+  'games/petal-catch/style.css',
+  'games/petal-catch/game.js',
+  'games/sprout-pop/',
+  'games/sprout-pop/index.html',
+  'games/sprout-pop/style.css',
+  'games/sprout-pop/game.js',
   'icons/icon-192.png',
   'icons/icon-512.png',
   'icons/favicon-16.png',

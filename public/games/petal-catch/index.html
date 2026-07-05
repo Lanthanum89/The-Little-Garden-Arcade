@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nanny's Memory Garden</title>
-<meta name="theme-color" content="#f6f5ef">
+<title>Nanny's Petal Catch</title>
+<meta name="theme-color" content="#cfe8f5">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -18,14 +18,22 @@
 <body>
 <div class="stage">
   <div class="panel">
-    <h1>Nanny's Memory Garden 🌷</h1>
-    <p class="sub">Tap two cards to find a matching pair</p>
+    <h1>Nanny's Petal Catch 🌸</h1>
+    <p class="sub">Tap a lane to move the basket and catch the petals</p>
     <div class="flourish" aria-hidden="true"><span>&#10022;</span><span>&#10022;</span><span>&#10022;</span></div>
 
-    <div class="board" id="board"></div>
+    <div class="hud">
+      <span class="lives" id="lives"></span>
+      <span class="score" id="score">Caught: 0</span>
+    </div>
+
+    <div class="play-area" id="playArea">
+      <div class="lanes" id="lanes"></div>
+      <div class="basket" id="basket">🧺</div>
+    </div>
 
     <div class="footer">
-      <span class="progress" id="progress">0 of 6 pairs</span>
+      <span class="progress">Don't let them hit the ground!</span>
       <button class="reset-btn" id="resetBtn">Start over</button>
     </div>
   </div>
@@ -33,9 +41,9 @@
 
 <div class="win-screen" id="winScreen">
   <div class="win-card">
-    <div style="font-size:44px;">🌸🌻🌷</div>
-    <h2>All matched!</h2>
-    <p style="color:var(--garden-ink-soft);">Well remembered.</p>
+    <div style="font-size:44px;">🌸🧺💛</div>
+    <h2 id="endTitle">Out of hearts!</h2>
+    <p id="endMessage" style="color:var(--garden-ink-soft);">You caught some petals.</p>
     <button id="playAgainBtn">Play again</button>
   </div>
 </div>

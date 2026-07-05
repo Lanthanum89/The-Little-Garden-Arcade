@@ -8,8 +8,8 @@ A hub of gentle, tap-to-play garden mini-games. No drag-and-drop, ever — every
 
 - **Flower Garden** 🌼 — tap a flower, then tap the pot of the same colour
 - **Memory Garden** 🌷 — tap two cards to find a matching pair
-- **Washing Line** 🧺 — tap a sock, then tap the basket of the same colour
-- **Colouring Garden** 🎨 — pick a colour, then tap a part of the picture to fill it in (no win condition — it's just for pottering about)
+- **Petal Catch** 🌸 — tap a lane to move the basket and catch the falling petals, three hearts before the round ends
+- **Sprout Pop** 🌱 — tap the sprouts to water them before they duck back underground, timed round
 
 ## Features
 
@@ -25,7 +25,7 @@ A hub of gentle, tap-to-play garden mini-games. No drag-and-drop, ever — every
 - Vanilla HTML / CSS / JS — no build step, no dependencies, no framework
 - PWA: `manifest.json` + service worker (offline play, installable), written to be subpath-safe for GitHub Pages
 - `localStorage` for progress tracking
-- Shared modules instead of duplicated logic: `shared/tap-select.js` (the select → target → check → animate state machine used by Flower Garden and Washing Line) and `shared/storage.js` (progress persistence)
+- Shared modules instead of duplicated logic: `shared/tap-select.js` (the select → target → check → animate state machine used by Flower Garden), `shared/storage.js` (progress persistence), and `shared/a11y.js` (keyboard/switch access for tap targets)
 - GitHub Pages hosting, deployed via GitHub Actions (`public/` → Pages, no build step)
 
 ## Local dev
