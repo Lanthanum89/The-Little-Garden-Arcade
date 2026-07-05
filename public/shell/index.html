@@ -60,6 +60,7 @@
 
   .tile {
     --press-scale: .97;
+    --tilt: 0deg;
     position: relative;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 10px;
@@ -67,19 +68,20 @@
     box-shadow: 0 4px 0 rgba(0, 0, 0, .09), 0 8px 16px rgba(0, 0, 0, .06);
     padding: 26px 12px 20px;
     text-decoration: none;
+    transform: rotate(var(--tilt));
     transition: transform .18s ease, box-shadow .18s ease;
   }
   .tile:hover, .tile:focus-visible {
-    transform: translateY(-3px) rotate(0deg);
+    transform: translateY(-3px) rotate(var(--tilt));
     box-shadow: 0 7px 0 rgba(0, 0, 0, .09), 0 14px 22px rgba(0, 0, 0, .09);
   }
-  .tile:active { transform: scale(var(--press-scale)); }
+  .tile:active { transform: scale(var(--press-scale)) rotate(var(--tilt)); }
   .tile:focus-visible { outline: 3px solid var(--garden-accent); outline-offset: 3px; }
 
-  .grid .tile:nth-child(1) { transform: rotate(-1.3deg); background: #ffd76b; color: #3d2f0a; }
-  .grid .tile:nth-child(2) { transform: rotate(1.3deg); background: #ff9eb6; color: #4a1424; }
-  .grid .tile:nth-child(3) { transform: rotate(-1deg); }
-  .grid .tile:nth-child(4) { transform: rotate(1deg); }
+  .grid .tile:nth-child(1) { --tilt: -1.3deg; background: #ffd76b; color: #3d2f0a; }
+  .grid .tile:nth-child(2) { --tilt: 1.3deg; background: #ff9eb6; color: #4a1424; }
+  .grid .tile:nth-child(3) { --tilt: -1deg; }
+  .grid .tile:nth-child(4) { --tilt: 1deg; }
   .grid .tile:nth-child(1) .icon { background: #fff2cf; }
   .grid .tile:nth-child(2) .icon { background: #ffe0e8; }
   .grid .tile:nth-child(1) .desc { color: #6b581e; }
