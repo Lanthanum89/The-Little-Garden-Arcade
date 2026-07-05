@@ -48,6 +48,7 @@ import { makeActivatable } from '../../shared/a11y.js';
   }
 
   function spawnPetal(){
+    if (!running) return;
     const i = Math.floor(Math.random() * LANES);
     const petal = document.createElement('span');
     petal.className = 'petal';
