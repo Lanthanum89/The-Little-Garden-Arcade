@@ -31,12 +31,12 @@ import { makeActivatable } from '../../shared/a11y.js';
     for (let i = 0; i < MOUNDS; i++){
       const el = document.createElement('div');
       el.className = 'mound';
-      el.setAttribute('aria-label', 'Sprout mound');
+      el.setAttribute('aria-label', `Sprout mound ${i + 1}`);
       const sprout = document.createElement('span');
       sprout.className = 'sprout';
       sprout.textContent = '🌱';
       el.appendChild(sprout);
-      const mound = { el, popped: false, retreatTimeout: null };
+      const mound = { el, popped: false, watered: false, retreatTimeout: null };
       makeActivatable(el, () => waterMound(mound));
       moundsEl.appendChild(el);
       mounds.push(mound);
@@ -55,12 +55,14 @@ import { makeActivatable } from '../../shared/a11y.js';
 
   function retreat(m){
     m.popped = false;
+    m.watered = false;
     m.el.classList.remove('popped', 'watered');
     clearTimeout(m.retreatTimeout);
   }
 
   function waterMound(m){
-    if (!running || !m.popped) return;
+    if (!running || !m.popped || m.watered) return;
+    m.watered = true;
     watered++;
     scoreEl.textContent = `Watered: ${watered}`;
     m.el.classList.add('watered');
