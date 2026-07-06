@@ -81,8 +81,14 @@ import { makeActivatable } from '../../shared/a11y.js';
       petal.settleTimeout = setTimeout(() => petal.remove(), 200);
     } else {
       petal.style.transition = 'top .3s ease-in';
-      petal.offsetHeight; // force reflow so the transition starts from frozenTop
-      petal.style.top = areaRect.height + 'px';
+      // A single requestAnimationFrame isn't reliably enough frames for the
+      // browser to have painted frozenTop before the next style change --
+      // it can still collapse into one frame and skip the transition.
+      // Nesting two rAF calls guarantees a full painted frame in between,
+      // without forcing a synchronous reflow the way petal.offsetHeight would.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { petal.style.top = areaRect.height + 'px'; });
+      });
       petal.settleTimeout = setTimeout(() => {
         petal.remove();
         loseLife();
