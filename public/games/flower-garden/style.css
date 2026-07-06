@@ -1,4 +1,4 @@
-html, body { background: var(--garden-blossom); overflow: hidden; height: 100%; }
+body { background: var(--garden-blossom); }
 
 .panel { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 
