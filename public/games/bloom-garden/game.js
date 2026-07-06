@@ -26,6 +26,7 @@ import { shuffle } from '../../shared/random.js';
   const tapSelect = createTapSelect({ selectedClass: 'selected' });
   let planted = 0;
   let unlocked = 0;
+  let winTimeout = null;
 
   function flowerSVG(hex, size){
     return `<svg width="${size}" height="${size}" viewBox="0 0 34 34">
@@ -117,7 +118,7 @@ import { shuffle } from '../../shared/random.js';
 
         if (planted === total){
           recordCompletion('bloom-garden');
-          setTimeout(() => winScreen.classList.add('show'), 450);
+          winTimeout = setTimeout(() => winScreen.classList.add('show'), 450);
         }
       },
       onFail: () => {
@@ -131,6 +132,7 @@ import { shuffle } from '../../shared/random.js';
     planted = 0;
     unlocked = 0;
     tapSelect.reset();
+    clearTimeout(winTimeout);
     progressEl.textContent = `0 of ${total} planted`;
     winScreen.classList.remove('show');
     const plotList = buildPlots();
