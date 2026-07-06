@@ -3,6 +3,7 @@
     { "id": "flower-garden", "name": "Flower Garden", "desc": "Match the flowers!", "icon": "🌼", "path": "../games/flower-garden/", "status": "ready" },
     { "id": "memory-garden", "name": "Memory Garden", "desc": "Can you remember?", "icon": "🌷", "path": "../games/memory-garden/", "status": "ready" },
     { "id": "petal-catch", "name": "Petal Catch", "desc": "Catch the petals!", "icon": "🌸", "path": "../games/petal-catch/", "status": "ready" },
-    { "id": "sprout-pop", "name": "Sprout Pop", "desc": "Water the sprouts!", "icon": "🌱", "path": "../games/sprout-pop/", "status": "ready" }
+    { "id": "sprout-pop", "name": "Sprout Pop", "desc": "Water the sprouts!", "icon": "🌱", "path": "../games/sprout-pop/", "status": "ready" },
+    { "id": "bloom-garden", "name": "Bloom Garden", "desc": "Grow a garden of your own!", "icon": "🌻", "path": "../games/bloom-garden/", "status": "ready" }
   ]
 }

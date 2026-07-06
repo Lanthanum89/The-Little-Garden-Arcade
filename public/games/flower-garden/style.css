@@ -2,7 +2,7 @@ html, body { background: var(--garden-blossom); overflow: hidden; height: 100%; 
 
 .panel { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 
-.pots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; max-width: 520px; margin-bottom: 18px; }
+.pots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; max-width: 520px; margin-bottom: 18px; }
 .pot {
   position: relative; aspect-ratio: 1/0.9; border-radius: 10px 10px 26px 26px;
   border: 3px solid rgba(0, 0, 0, .08);
@@ -18,6 +18,8 @@ html, body { background: var(--garden-blossom); overflow: hidden; height: 100%; 
 .pYellow { background: linear-gradient(180deg, #fbf0d8, #e0ac4c); }
 .pPurple { background: linear-gradient(180deg, #ece1f7, #a583c9); }
 .pBlue { background: linear-gradient(180deg, #dcecf5, #6fa8c9); }
+.pRed { background: linear-gradient(180deg, #f7ded7, #c9583f); }
+.pGreen { background: linear-gradient(180deg, #e3efd7, #6b9e5c); }
 
 .flower-tray {
   flex: 1; width: 100%; max-width: 560px;

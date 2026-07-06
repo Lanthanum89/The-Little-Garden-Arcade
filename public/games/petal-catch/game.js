@@ -57,15 +57,37 @@ import { makeActivatable } from '../../shared/a11y.js';
     petal.style.animationDuration = FALL_MS + 'ms';
     petal.addEventListener('animationend', () => {
       if (!petal.isConnected) return;
-      petal.remove();
-      if (i === lane) {
-        caught++;
-        scoreEl.textContent = `Caught: ${caught}`;
-      } else {
-        loseLife();
-      }
+      settlePetal(petal, i);
     });
     playArea.appendChild(petal);
+  }
+
+  // Runs once a petal's fall animation reaches the basket line. Freezes it
+  // at its current on-screen position, then either shrinks it into the
+  // basket (caught) or lets it keep dropping to the ground (missed) --
+  // rather than always finishing the fall at the play-area's floor
+  // regardless of outcome, which made the basket look decorative.
+  function settlePetal(petal, spawnLane){
+    const petalRect = petal.getBoundingClientRect();
+    const areaRect = playArea.getBoundingClientRect();
+    const frozenTop = petalRect.top - areaRect.top;
+    petal.style.animation = 'none';
+    petal.style.top = frozenTop + 'px';
+
+    if (spawnLane === lane) {
+      petal.classList.add('caught');
+      caught++;
+      scoreEl.textContent = `Caught: ${caught}`;
+      petal.settleTimeout = setTimeout(() => petal.remove(), 200);
+    } else {
+      petal.style.transition = 'top .3s ease-in';
+      petal.offsetHeight; // force reflow so the transition starts from frozenTop
+      petal.style.top = areaRect.height + 'px';
+      petal.settleTimeout = setTimeout(() => {
+        petal.remove();
+        loseLife();
+      }, 300);
+    }
   }
 
   function loseLife(){
@@ -75,10 +97,17 @@ import { makeActivatable } from '../../shared/a11y.js';
     if (lives <= 0) endGame();
   }
 
+  function clearPetals(){
+    playArea.querySelectorAll('.petal').forEach(p => {
+      clearTimeout(p.settleTimeout);
+      p.remove();
+    });
+  }
+
   function endGame(){
     running = false;
     clearInterval(spawnTimer);
-    playArea.querySelectorAll('.petal').forEach(p => p.remove());
+    clearPetals();
     recordCompletion('petal-catch');
     endTitle.textContent = 'Out of hearts!';
     endMessage.textContent = `You caught ${caught} petal${caught === 1 ? '' : 's'}. Have another go?`;
@@ -95,7 +124,7 @@ import { makeActivatable } from '../../shared/a11y.js';
     renderLanes();
     moveBasketTo(lane);
     winScreen.classList.remove('show');
-    playArea.querySelectorAll('.petal').forEach(p => p.remove());
+    clearPetals();
     clearInterval(spawnTimer);
     spawnTimer = setInterval(spawnPetal, SPAWN_MS);
   }

@@ -34,7 +34,17 @@ html, body { background: var(--garden-sky); overflow: hidden; height: 100%; }
   animation-fill-mode: forwards;
   pointer-events: none;
 }
-@keyframes fall { to { top: 100%; } }
+/* Stops at the basket's line (it sits at bottom: 6px, ~50px tall)
+   instead of the play-area floor -- catch/miss is settled in JS once
+   the fall reaches here, since the basket can move mid-flight. */
+@keyframes fall { to { top: calc(100% - 56px); } }
+
+.petal.caught {
+  animation: none;
+  transition: transform .2s ease, opacity .2s ease;
+  transform: translateX(-50%) scale(.2);
+  opacity: 0;
+}
 
 .basket {
   position: absolute;
