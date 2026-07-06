@@ -57,15 +57,59 @@ import { makeActivatable } from '../../shared/a11y.js';
     petal.style.animationDuration = FALL_MS + 'ms';
     petal.addEventListener('animationend', () => {
       if (!petal.isConnected) return;
-      petal.remove();
-      if (i === lane) {
-        caught++;
-        scoreEl.textContent = `Caught: ${caught}`;
-      } else {
-        loseLife();
-      }
+      settlePetal(petal, i);
     });
     playArea.appendChild(petal);
+  }
+
+  // Runs once a petal's fall animation reaches the basket line. Freezes it
+  // at its current on-screen position, then either shrinks it into the
+  // basket (caught) or lets it keep dropping to the ground (missed) --
+  // rather than always finishing the fall at the play-area's floor
+  // regardless of outcome, which made the basket look decorative.
+  function settlePetal(petal, spawnLane){
+    const petalRect = petal.getBoundingClientRect();
+    const areaRect = playArea.getBoundingClientRect();
+    const frozenTop = petalRect.top - areaRect.top;
+    petal.style.animation = 'none';
+    petal.style.top = frozenTop + 'px';
+
+    if (spawnLane === lane) {
+      petal.classList.add('caught');
+      caught++;
+      scoreEl.textContent = `Caught: ${caught}`;
+      petal.settleTimeout = setTimeout(() => petal.remove(), 200);
+    } else {
+      petal.style.transition = 'top .3s ease-in';
+      // A single requestAnimationFrame isn't reliably enough frames for the
+      // browser to have painted frozenTop before the next style change --
+      // it can still collapse into one frame and skip the transition.
+      // Nesting two rAF calls guarantees a full painted frame in between,
+      // without forcing a synchronous reflow the way petal.offsetHeight would.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { petal.style.top = areaRect.height + 'px'; });
+      });
+
+      // transitionend is the real signal that the drop finished -- a fixed
+      // timeout here doesn't know about the two-rAF startup delay above, so
+      // it could fire (and lose a life) slightly before the petal visually
+      // reaches the ground. Keep a generous timeout only as a fallback for
+      // the rare case transitionend doesn't fire at all.
+      let settled = false;
+      const finishMiss = () => {
+        if (settled) return;
+        settled = true;
+        petal.removeEventListener('transitionend', onTransitionEnd);
+        clearTimeout(petal.settleTimeout);
+        petal.remove();
+        loseLife();
+      };
+      const onTransitionEnd = (e) => {
+        if (e.propertyName === 'top') finishMiss();
+      };
+      petal.addEventListener('transitionend', onTransitionEnd);
+      petal.settleTimeout = setTimeout(finishMiss, 600);
+    }
   }
 
   function loseLife(){
@@ -75,10 +119,17 @@ import { makeActivatable } from '../../shared/a11y.js';
     if (lives <= 0) endGame();
   }
 
+  function clearPetals(){
+    playArea.querySelectorAll('.petal').forEach(p => {
+      clearTimeout(p.settleTimeout);
+      p.remove();
+    });
+  }
+
   function endGame(){
     running = false;
     clearInterval(spawnTimer);
-    playArea.querySelectorAll('.petal').forEach(p => p.remove());
+    clearPetals();
     recordCompletion('petal-catch');
     endTitle.textContent = 'Out of hearts!';
     endMessage.textContent = `You caught ${caught} petal${caught === 1 ? '' : 's'}. Have another go?`;
@@ -95,7 +146,7 @@ import { makeActivatable } from '../../shared/a11y.js';
     renderLanes();
     moveBasketTo(lane);
     winScreen.classList.remove('show');
-    playArea.querySelectorAll('.petal').forEach(p => p.remove());
+    clearPetals();
     clearInterval(spawnTimer);
     spawnTimer = setInterval(spawnPetal, SPAWN_MS);
   }

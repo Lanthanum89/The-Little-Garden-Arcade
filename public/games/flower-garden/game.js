@@ -8,7 +8,9 @@ import { shuffle } from '../../shared/random.js';
     { id:'pink',   name:'Pink',   hex:'#e8849c', potClass:'pPink'   },
     { id:'yellow', name:'Yellow', hex:'#e3a93f', potClass:'pYellow' },
     { id:'purple', name:'Purple', hex:'#9b7fc7', potClass:'pPurple' },
-    { id:'blue',   name:'Blue',   hex:'#5fa3c9', potClass:'pBlue'   }
+    { id:'blue',   name:'Blue',   hex:'#5fa3c9', potClass:'pBlue'   },
+    { id:'red',    name:'Red',    hex:'#c9583f', potClass:'pRed'    },
+    { id:'green',  name:'Green',  hex:'#6b9e5c', potClass:'pGreen'  }
   ];
   const PER_COLOUR = 2;
   const total = COLOURS.length * PER_COLOUR;

@@ -10,6 +10,7 @@ A hub of gentle, tap-to-play garden mini-games. No drag-and-drop, ever — every
 - **Memory Garden** 🌷 — tap two cards to find a matching pair
 - **Petal Catch** 🌸 — tap a lane to move the basket and catch the falling petals, three hearts before the round ends
 - **Sprout Pop** 🌱 — tap the sprouts to water them before they duck back underground, timed round
+- **Bloom Garden** 🌻 — tap a flower, then tap an empty plot to plant it; no timer, just a garden that slowly fills in with birds, butterflies and benches as you go
 
 ## Features
 

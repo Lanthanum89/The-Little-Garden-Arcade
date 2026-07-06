@@ -5,7 +5,7 @@
 const BASE = new URL('./', self.location).pathname;
 const NAV_FALLBACK = BASE + 'shell/index.html';
 
-const CACHE = 'garden-arcade-v12';
+const CACHE = 'garden-arcade-v13';
 
 const ASSETS = [
   '',
@@ -40,6 +40,10 @@ const ASSETS = [
   'games/sprout-pop/index.html',
   'games/sprout-pop/style.css',
   'games/sprout-pop/game.js',
+  'games/bloom-garden/',
+  'games/bloom-garden/index.html',
+  'games/bloom-garden/style.css',
+  'games/bloom-garden/game.js',
   'icons/icon-192.png',
   'icons/icon-512.png',
   'icons/favicon-16.png',

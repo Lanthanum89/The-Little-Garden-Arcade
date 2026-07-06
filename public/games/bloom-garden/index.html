@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nanny's Flower Garden</title>
-<meta name="theme-color" content="#f9e8ec">
+<title>Nanny's Bloom Garden</title>
+<meta name="theme-color" content="#f6f5ef">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -18,15 +18,16 @@
 <body>
 <div class="stage">
   <div class="panel">
-    <h1>Nanny's Flower Garden 🌼</h1>
-    <p class="sub">Tap a flower, then tap the pot of the same colour</p>
+    <h1>Nanny's Bloom Garden 🌻</h1>
+    <p class="sub">Tap a flower, then tap an empty spot to plant it</p>
     <div class="flourish" aria-hidden="true"><span>&#10022;</span><span>&#10022;</span><span>&#10022;</span></div>
 
-    <div class="pots" id="pots"></div>
+    <div class="decorations" id="decorations" aria-hidden="true"></div>
+    <div class="plots" id="plots"></div>
     <div class="flower-tray" id="tray"></div>
 
     <div class="footer">
-      <span class="progress" id="progress">0 of 12 planted</span>
+      <span class="progress" id="progress">0 of 16 planted</span>
       <button class="reset-btn" id="resetBtn">Start over</button>
     </div>
   </div>
@@ -34,9 +35,9 @@
 
 <div class="win-screen" id="winScreen">
   <div class="win-card">
-    <div style="font-size:44px;">🌼🌻🌷</div>
-    <h2>All planted!</h2>
-    <p style="color:var(--garden-ink-soft);">Every flower found its pot.</p>
+    <div style="font-size:44px;">🌻🦋🐦</div>
+    <h2>Full bloom!</h2>
+    <p style="color:var(--garden-ink-soft);">Every plot is planted and the garden is alive with visitors.</p>
     <button id="playAgainBtn">Play again</button>
   </div>
 </div>
