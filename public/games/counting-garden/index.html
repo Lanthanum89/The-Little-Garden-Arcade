@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nanny's Counting Garden</title>
+<meta name="theme-color" content="#f9e8ec">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../icons/favicon-16.png">
+<link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png">
+<link rel="manifest" href="../../manifest.json">
+<link rel="stylesheet" href="../../shell/shell.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stage">
+  <div class="panel">
+    <a href="../../shell/" class="home-btn" aria-label="Back to the game hub">🏠</a>
+    <h1>Nanny's Counting Garden 🐞</h1>
+    <p class="sub">Count the critters, then tap the number</p>
+    <div class="flourish" aria-hidden="true"><span>&#10022;</span><span>&#10022;</span><span>&#10022;</span></div>
+
+    <div class="scene" id="scene"></div>
+    <div class="answers" id="answers"></div>
+
+    <div class="footer">
+      <span class="progress" id="progress">0 of 8 rounds</span>
+      <button class="reset-btn" id="resetBtn">Start over</button>
+    </div>
+  </div>
+</div>
+
+<div class="win-screen" id="winScreen">
+  <div class="win-card">
+    <div style="font-size:44px;">🐞🦋🐝</div>
+    <h2>All counted!</h2>
+    <p style="color:var(--garden-ink-soft);">You found every number in the garden.</p>
+    <button id="playAgainBtn">Play again</button>
+  </div>
+</div>
+
+<script type="module" src="game.js"></script>
+<script type="module" src="../../shared/register-sw.js"></script>
+</body>
+</html>
