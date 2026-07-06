@@ -1,10 +1,16 @@
-html, body { background: var(--garden-sage); overflow: hidden; height: 100%; }
+body { background: var(--garden-sage); }
 
 .panel { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 
+/* Bloom Garden has the most content of any game (16 plots) -- trim the
+   shared vertical rhythm a little so it comfortably fits common phone
+   heights without needing to scroll. */
+.sub { margin-bottom: 8px; }
+.flourish { margin: 6px 0 0; }
+
 .decorations {
   display: flex; justify-content: center; gap: 16px;
-  min-height: 28px; margin-bottom: 4px;
+  min-height: 24px; margin-bottom: 2px;
 }
 .decor {
   font-size: 22px;
@@ -15,11 +21,11 @@ html, body { background: var(--garden-sage); overflow: hidden; height: 100%; }
 .decor.shown { opacity: 1; transform: scale(1); }
 
 .plots {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
-  width: 100%; max-width: 480px; margin-bottom: 14px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+  width: 100%; max-width: 480px; margin-bottom: 10px;
 }
 .plot {
-  position: relative; aspect-ratio: 1/1; border-radius: 12px;
+  position: relative; aspect-ratio: 1/0.88; border-radius: 12px;
   background: linear-gradient(180deg, #e9dbc0, #cdb488);
   border: 2px solid rgba(0, 0, 0, .06);
   display: flex; align-items: center; justify-content: center;
