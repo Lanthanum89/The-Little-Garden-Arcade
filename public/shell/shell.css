@@ -109,6 +109,12 @@ h1 {
   text-align: center;
 }
 
+/* The home button floats in the panel's corner regardless of title
+   length, so reserve clearance on both sides of the centred title/sub
+   text whenever a home button is present -- otherwise a long enough
+   title runs underneath it. */
+.home-btn + h1, .home-btn ~ .sub { padding: 0 40px; }
+
 .stage {
   height: 100%;
   display: flex;
