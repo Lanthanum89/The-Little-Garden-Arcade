@@ -37,6 +37,21 @@ html, body { background: var(--garden-sun); overflow: hidden; height: 100%; }
 .mound.popped .sprout { transform: translateY(6%); }
 .mound.watered .sprout { transform: translateY(0) scale(1.25); }
 
+.drip {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  animation: dripFall .45s ease-in forwards;
+  pointer-events: none;
+}
+@keyframes dripFall {
+  0% { top: -4px; opacity: 1; }
+  65% { opacity: 1; }
+  100% { top: 62%; opacity: 0; }
+}
+
 .footer { max-width: 560px; }
 
 .win-card button { background: var(--garden-accent); }

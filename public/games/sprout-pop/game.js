@@ -60,6 +60,16 @@ import { makeActivatable } from '../../shared/a11y.js';
     m.watered = false;
     m.el.classList.remove('popped', 'watered');
     clearTimeout(m.retreatTimeout);
+    const drip = m.el.querySelector('.drip');
+    if (drip) drip.remove();
+  }
+
+  function spawnDrip(moundEl){
+    const drip = document.createElement('span');
+    drip.className = 'drip';
+    drip.textContent = '💧';
+    moundEl.appendChild(drip);
+    drip.addEventListener('animationend', () => drip.remove());
   }
 
   function waterMound(m){
@@ -68,6 +78,7 @@ import { makeActivatable } from '../../shared/a11y.js';
     watered++;
     scoreEl.textContent = `Watered: ${watered}`;
     m.el.classList.add('watered');
+    spawnDrip(m.el);
     clearTimeout(m.retreatTimeout);
     m.retreatTimeout = setTimeout(() => retreat(m), 200);
   }

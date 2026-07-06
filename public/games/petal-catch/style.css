@@ -25,7 +25,13 @@ html, body { background: var(--garden-sky); overflow: hidden; height: 100%; }
 }
 
 .lanes { position: absolute; inset: 0; display: flex; }
-.lane { flex: 1; height: 100%; cursor: pointer; }
+.lane {
+  flex: 1; height: 100%; cursor: pointer;
+  border-right: 2px dashed rgba(22, 58, 74, .1);
+  transition: background-color .15s ease;
+}
+.lane:last-child { border-right: none; }
+.lane:hover { background-color: rgba(22, 58, 74, .04); }
 .lane:focus-visible { outline: 3px solid var(--garden-accent); outline-offset: -3px; }
 
 .petal {
