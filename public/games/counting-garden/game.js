@@ -17,6 +17,7 @@ import { shuffle } from '../../shared/random.js';
   let currentCorrect = 0;
   let nextRoundTimeout = null;
   let winTimeout = null;
+  let locked = false;
 
   function randomInt(min, max){
     return min + Math.floor(Math.random() * (max - min + 1));
@@ -55,11 +56,16 @@ import { shuffle } from '../../shared/random.js';
   }
 
   function handleAnswer(chosen, correct, btn){
+    if (locked) return;
+
     if (chosen !== correct){
       btn.classList.add('wrong');
       setTimeout(() => btn.classList.remove('wrong'), 400);
       return;
     }
+
+    locked = true;
+    answersEl.querySelectorAll('.answer-btn').forEach(b => b.disabled = true);
 
     correctAnswers++;
     round++;
@@ -78,6 +84,7 @@ import { shuffle } from '../../shared/random.js';
     currentCorrect = randomInt(MIN_COUNT, MAX_COUNT);
     renderScene(icon, currentCorrect);
     renderAnswers(currentCorrect);
+    locked = false;
   }
 
   function start(){
