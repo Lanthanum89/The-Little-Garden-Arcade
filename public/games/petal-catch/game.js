@@ -89,10 +89,26 @@ import { makeActivatable } from '../../shared/a11y.js';
       requestAnimationFrame(() => {
         requestAnimationFrame(() => { petal.style.top = areaRect.height + 'px'; });
       });
-      petal.settleTimeout = setTimeout(() => {
+
+      // transitionend is the real signal that the drop finished -- a fixed
+      // timeout here doesn't know about the two-rAF startup delay above, so
+      // it could fire (and lose a life) slightly before the petal visually
+      // reaches the ground. Keep a generous timeout only as a fallback for
+      // the rare case transitionend doesn't fire at all.
+      let settled = false;
+      const finishMiss = () => {
+        if (settled) return;
+        settled = true;
+        petal.removeEventListener('transitionend', onTransitionEnd);
+        clearTimeout(petal.settleTimeout);
         petal.remove();
         loseLife();
-      }, 300);
+      };
+      const onTransitionEnd = (e) => {
+        if (e.propertyName === 'top') finishMiss();
+      };
+      petal.addEventListener('transitionend', onTransitionEnd);
+      petal.settleTimeout = setTimeout(finishMiss, 600);
     }
   }
 
