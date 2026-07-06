@@ -97,7 +97,11 @@ import { shuffle } from '../../shared/random.js';
       },
       onSuccess: (selectedUid) => {
         const flowerEl = trayEl.querySelector(`[data-uid="${selectedUid}"]`);
+        const t = TYPES.find(x => x.id === plotType);
         plotEl.classList.add('filled');
+        plotEl.setAttribute('aria-label', `${t.name} flower, planted`);
+        plotEl.setAttribute('tabindex', '-1');
+        plotEl.removeAttribute('role');
 
         flowerEl.classList.add('gone');
         setTimeout(() => flowerEl.remove(), 300);
